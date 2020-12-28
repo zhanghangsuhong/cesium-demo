@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<style>
+		#webgl-canvas{
+			width:400px;
+			height:400px;
+		}
+	</style>
+</head>
+<body>
+		<div class="container">
+			<canvas id="webgl-canvas"></canvas>
+		</div>
+
+	<script>
+		var canvas = document.getElementById('webgl-canvas'),
+		webgl = canvas.getContext('webgl')
+		webgl.viewport(0,0,canvas.clientWidth,canvas.clientHeight)
+
+		webgl.clearColor(1.0,0,0,1)
+		webgl.clear(webgl.COLOR_BUFFER_BIT)
+
+	</script>
+</body>
+</html>

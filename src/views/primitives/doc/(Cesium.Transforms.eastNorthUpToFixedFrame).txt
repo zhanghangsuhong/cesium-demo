@@ -1,0 +1,75 @@
+我们可以通过Cesium.Transforms对象来获取到相关的方法：
+
+Cesium.Transforms.eastNorthUpToFixedFrame
+常用的有Cesium.Transforms.eastNorthUpToFixedFrame这个方法，这个方法支持通过传入一个中心点，然后获取到中心点的正东正北，和地表法线的方向：
+x轴指向当前点的东方向。
+y轴指向当前点的北方向。
+z轴在椭圆体的方向轴指向表面法线穿过的位置。
+
+例子：
+
+//获取到经纬度为 0 0的地点的 局部坐标系
+var center = Cesium.Cartesian3.fromDegrees(0.0, 0.0);
+var transform = Cesium.Transforms.eastNorthUpToFixedFrame(center);
+1
+2
+3
+和eastNorthUpToFixedFrame方法相匹配的还有相应的：
+northEastDownToFixedFrame
+northUpEastToFixedFrame
+northWestUpToFixedFrame
+
+Cesium.Transforms.northEastDownToFixedFrame
+和eastNorthUpToFixedFrame用法相同，返回的矩阵的轴向略有不同：
+x轴指向当地的北方
+y轴指向当前地点的东方
+z轴指向当前地点地表法线穿过的方向，也就是垂直于地表
+
+Cesium.Transforms.northUpEastToFixedFrame
+和eastNorthUpToFixedFrame用法相同，返回的矩阵的轴向略有不同：
+x轴指向北方
+y轴垂直于地表
+z轴指向于东方
+
+Cesium.Transforms.northWestUpToFixedFrame
+和eastNorthUpToFixedFrame用法相同，返回的矩阵的轴向略有不同：
+x轴指向北方
+y轴指向西方
+z轴垂直于地表
+
+除了前面获取某个位置的局部坐标系矩阵，我们还可以获取某个地表位置的局部旋转修改成全局设置的方式。
+
+Cesium.Transforms.fixedFrameToHeadingPitchRoll
+fixedFrameToHeadingPitchRoll方法可以根据特定参考系中的变换计算航向俯仰角滚动角。
+fixedFrameToHeadingPitchRoll支持四个值：transform，ellipsoid，fixedFrameTransform，result
+transform-需要变换的四维矩阵
+ellipsoid-当前使用的坐标系，可选，默认值：Ellipsoid.WGS84
+fixedFrameTransform - 当前使用全局转局部的方式，也是前面提供的四种，默认Transforms.eastNorthUpToFixedFrame
+result - 可选，如果设置，将返回的HeadingPitchRoll值放置在此对象内。
+
+Cesium.Transforms.headingPitchRollQuaternion
+可以根据根据位置和设置的HeadingPitchRoll的值获取到在当前坐标系中的四元数
+例子：
+
+var center = Cesium.Cartesian3.fromDegrees(0.0, 0.0);
+var heading = -Cesium.Math.PI_OVER_TWO;
+var pitch = Cesium.Math.PI_OVER_FOUR;
+var roll = 0.0;
+var hpr = new HeadingPitchRoll(heading, pitch, roll);
+var quaternion = Cesium.Transforms.headingPitchRollQuaternion(center, hpr);
+1
+2
+3
+4
+5
+6
+Cesium.Transforms.headingPitchRollToFixedFrame
+可以根据根据位置和设置的HeadingPitchRoll的值获取到在当前坐标系中的四维矩阵
+例子：
+
+var center = Cesium.Cartesian3.fromDegrees(0.0, 0.0);
+var heading = -Cesium.Math.PI_OVER_TWO;
+var pitch = Cesium.Math.PI_OVER_FOUR;
+var roll = 0.0;
+var hpr = new Cesium.HeadingPitchRoll(heading, pitch, roll);
+var transform = Cesium.Transforms.headingPitchRollToFixedFrame(center, hpr);

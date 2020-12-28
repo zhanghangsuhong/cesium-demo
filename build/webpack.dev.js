@@ -7,14 +7,19 @@ const devConfig = {
 	devServer: {
 		contentBase: path.join(__dirname, "../dist"),
 		open: false,
-		port: 8080,
-		hot: true
+		port: 9999,
+		hot: true,
+		proxy: {
+			'/cesium/3DModel/*': {
+				target: 'http://localhost:8080'
+			}
+		}
 	},
 	module: {
 		rules: [{
 			test: /\.scss$/,
 			use: [
-				'style-loader', 
+				'style-loader',
 				{
 					loader: 'css-loader',
 					options: {

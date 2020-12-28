@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<title>html 模版</title>
+	<style>
+		* {
+			margin: 0;
+			padding: 0;
+		}
+
+		#root {
+			width: 100vw;
+			height: 100vh;
+		}
+
+		.cesium-widget-credits {
+			/* 去除logo */
+			display: none !important;
+		}
+
+		#coordinates {
+			position: fixed;
+			top: 50px;
+			left: 50px;
+			z-index: 999;
+		}
+	</style>
+</head>
+
+<body>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/proj4js/2.4.4/proj4.js"></script>
+	<div id='root'></div>
+
+	<div id="coordinates">
+
+	</div>
+</body>
+
+</html>
