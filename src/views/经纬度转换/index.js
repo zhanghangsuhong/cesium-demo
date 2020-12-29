@@ -2,6 +2,14 @@
  * @description 经纬度转换
  * Cesium4种获取鼠标点击位置 https://blog.csdn.net/weitaming1/article/details/95067688
  * Cesium中的几种坐标和相互转换 https://blog.csdn.net/sinat_38818576/article/details/83650014
+ * https://www.cnblogs.com/aizai846/p/11846929.html
+ * https://www.cnblogs.com/telwanggs/p/11289954.html
+ * WGS84经纬度坐标系（没有实际的对象）、WGS84弧度坐标系（Cartographic）、笛卡尔空间直角坐标系（Cartesian3）、平面坐标系（Cartesian2），4D笛卡尔坐标系（Cartesian4）,但是在Cesium中没有实际的对象来描述WGS84坐标，都是以弧度的方式来进行运用的也就是Cartographic类
+ * 经纬度和弧度的转换
+ * 经纬度转弧度：var radians=Cesium.CesiumMath.toRadians（degrees）;
+ * 弧度转经纬度：var degrees=Cesium.CesiumMath.toDegrees（radians）;
+ * Cesium中源码的转换方法，其实就是：弧度= π/180×经纬度角度；经纬度角度=180/π×弧度。
+ * 自定义 letflet风格 气泡窗口 https://blog.csdn.net/zlx312/article/details/79824940
  */
 
 var Cesium = require('cesium')
